@@ -1,0 +1,15 @@
+[POST](https://adultlee-log.vercel.app/ko/article/1a149905-e2f1-8066-8306-e8c2d912e813)
+
+```js
+import { useEffect, useRef } from 'react';
+
+export function useTimeout(callback: () => void, delay: number) {
+  const callbackRef = useRef(callback);
+  callbackRef.current = callback;
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => callbackRef.current(), delay);
+    return () => clearTimeout(timeoutId);
+  }, [delay]);
+}
+```
